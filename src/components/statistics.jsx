@@ -1,28 +1,18 @@
 import React from "react";
 
-export const Statistics = (props) => {
-  if (props.total === 0) {
+export const Statistics = ({ good, neutral, bad, total }) => {
+  if (total === 0) {
     return <p>No Feedback given!!!</p>;
   }
   return (
     <div>
-      <p>Good: {props.good}</p>
-      <p>Neutral: {props.neutral}</p>
-      <p>Bad: {props.bad}</p>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
 
-      <p>Total: {props.total}</p>
-      <p>
-        average :{" "}
-        {props.total === 0
-          ? "Nicht verfuegbar"
-          : (props.good + props.bad * -1) / props.total}
-      </p>
-      <p>
-        positive :
-        {props.total === 0
-          ? "Nicht verfuegbar"
-          : `${(props.good / props.total) * 100}%`}
-      </p>
+      <p>Total: {total}</p>
+      <p>average : {((good + bad * -1) / total).toFixed(2)}</p>
+      <p>positive : {((good / total) * 100).toFixed(2)}%</p>
     </div>
   );
 };
